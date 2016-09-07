@@ -4,6 +4,8 @@
 
 **Install webpack**
 
+Install the *webpack* npm module globally.
+
 ```sh
 $ which npm
 /c/Software/Nodejs/4.4.7/npm
@@ -30,3 +32,4 @@ webpack@1.13.2 C:\Users\droid\AppData\Roaming\npm\node_modules\webpack
 
 ```
 
+This makes the *webpack* command available for building code. 
