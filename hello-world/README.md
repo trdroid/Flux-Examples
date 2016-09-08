@@ -168,6 +168,8 @@ babel-preset-es2015@6.14.0 node_modules/babel-preset-es2015
 }
 ```
 
+### Building Code
+
 ```sh
 ~/onGit/Flux-Tryouts/hello-world$ webpack
 Hash: ff1b4937f0d4ede98f72
