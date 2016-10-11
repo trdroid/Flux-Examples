@@ -167,3 +167,15 @@ babel-preset-es2015@6.14.0 node_modules/babel-preset-es2015
   }
 }
 ```
+
+### Building Code
+
+```sh
+~/onGit/Flux-Tryouts/hello-world$ webpack
+Hash: ff1b4937f0d4ede98f72
+Version: webpack 1.13.2
+Time: 35894ms
+         Asset     Size  Chunks             Chunk Names
+main-bundle.js  17.5 kB       0  [emitted]  main
+    + 5 hidden modules
+```
