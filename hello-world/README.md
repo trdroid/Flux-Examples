@@ -266,6 +266,8 @@ module.exports = {
 
 1] Refer to the script that would be generated using *webpack*
 
+**Project Content**
+
 ![](_misc/Project%20Contents.png)
 
 ### Building Code
@@ -279,6 +281,10 @@ Time: 35894ms
 main-bundle.js  17.5 kB       0  [emitted]  main
     + 5 hidden modules
 ```
+
+**Project Content**
+
+Notice the generated "main-bundle.js" file 
 
 ![](_misc/Project%20Contents%20-%20After%20running%20webpack.png)
 
