@@ -32,7 +32,7 @@ Copy the following files from the "hello-world" sample in the "Flux" repository.
 ### Install Dependencies
 
 ```sh
-droid@droidserver:~/onGit/Scratchpad/Flux/BasicStore$ npm install
+droid@droidserver:~/onGit/Flux-Tryouts/basic-store$ npm install
 basic-store@1.0.0 /home/droid/onGit/Scratchpad/Flux/BasicStore
 ├─┬ babel-core@6.18.2 
 │ ├─┬ babel-code-frame@6.16.0 
@@ -395,22 +395,28 @@ module.exports = {
 ![](_misc/Project%20Content.png)
 
 
-### Output
-
-**Run Webpack**
+### Run Webpack
 
 ```sh
-droid@droidserver:~/onGit/Scratchpad/Flux/BasicStore$ webpack
-Hash: 3bcbc66f8f40489d0f2f
+droid@droidserver:~/onGit/Flux-Tryouts/basic-store$ webpack
+Hash: 7482b7a968a5bb411237
 Version: webpack 1.13.3
-Time: 918ms
+Time: 870ms
          Asset     Size  Chunks             Chunk Names
 main-bundle.js  18.9 kB       0  [emitted]  main
     + 7 hidden modules
 ```
+
+### Project Content
+
+![](_misc/Project%20Content%20-%20After%20running%20webpack.png)
+
+### Output 
 
 **Viewing index.html**
 
 Open index.html and view the output in the console
 
 ![](_misc/Browser%20Snapshot.png)
+
+
