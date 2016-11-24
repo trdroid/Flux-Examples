@@ -420,3 +420,132 @@ Open index.html and view the output in the console
 ![](_misc/Browser%20Snapshot.png)
 
 
+### Using Events
+
+*stores/homePage.js*
+
+```js
+import dispatcher from '../dispatcher';
+import { EventEmitter } from 'events';              <------ 1
+
+class HomePageStore extends EventEmitter {          <------ 2
+  constructor() {
+    this.state = {
+      user: '',
+      headerEntries: [],
+      pageContent: ''
+    };
+
+    dispatcher.register((e) => {
+      switch(e.type) {
+        case 'HOME_PAGE_LOADED':
+          Object.assign(this.state, e.payload);
+          this.emit('update', this.state);          <------ 3
+          break;
+      }
+    });
+  }
+}
+
+export default new HomePageStore();
+```
+
+*main.js*
+
+```js
+import dispatcher from './dispatcher';
+import homePageStore from './stores/homePage';
+
+console.log(`user: "${homePageStore.state.user}"`);
+console.log(`Header Entries: "${homePageStore.state.headerEntries}"`);
+console.log(`Page Content: "${homePageStore.state.pageContent}"`);
+
+homePageStore.on('update', (state) => {                     <------- 1
+  console.log('> user', state.user);                        <------- 2
+  console.log('> Header Entries', state.headerEntries);
+  console.log('> Page Content', state.pageContent);
+});
+
+dispatcher.dispatch({
+  type: 'HOME_PAGE_LOADED',
+  payload: {
+    user: 'Einstein',
+    headerEntries: [
+      'Menu',
+      'Courses',
+      'Instructors',
+      'About'
+    ],
+    pageContent: 'Welcome to the store'
+  }
+});
+
+console.log(`user: "${homePageStore.state.user}"`);
+console.log(`Header Entries: "${homePageStore.state.headerEntries}"`);
+console.log(`Page Content: "${homePageStore.state.pageContent}"`);
+```
+
+```sh
+droid@droidserver:~/onGit/Flux-Tryouts/basic-store$ webpack
+Hash: aa3fd09d8bd88509ded6
+Version: webpack 1.13.3
+Time: 4814ms
+         Asset     Size  Chunks             Chunk Names
+main-bundle.js  18.3 kB       0  [emitted]  main
+    + 7 hidden modules
+
+ERROR in ./stores/homePage.js
+Module build failed: SyntaxError: 'this' is not allowed before super()
+
+  4 | class HomePageStore extends EventEmitter {
+  5 |   constructor() {
+> 6 |     this.state = {
+    |     ^
+  7 |       user: '',
+  8 |       headerEntries: [],
+  9 |       pageContent: ''
+
+ @ ./main.js 7:16-44
+```
+
+*stores/homePage.js*
+
+```js
+import dispatcher from '../dispatcher';
+import { EventEmitter } from 'events';
+
+class HomePageStore extends EventEmitter {
+  constructor() {
+    super();                                        <------- 1
+
+    this.state = {
+      user: '',
+      headerEntries: [],
+      pageContent: ''
+    };
+
+    dispatcher.register((e) => {
+      switch(e.type) {
+        case 'HOME_PAGE_LOADED':
+          Object.assign(this.state, e.payload);
+          this.emit('update', this.state);
+          break;
+      }
+    });
+  }
+}
+
+export default new HomePageStore();
+```
+
+```sh
+droid@droidserver:~/onGit/Flux-Tryouts/basic-store$ webpack
+Hash: 6277c3cfdaea6a769b17
+Version: webpack 1.13.3
+Time: 916ms
+         Asset     Size  Chunks             Chunk Names
+main-bundle.js  28.9 kB       0  [emitted]  main
+    + 8 hidden modules
+```
+
+![](_misc/Browser%20Screenshot%20-%20With%20the%20Store%20using%20an%20EventEmitter.png)
