@@ -1,7 +1,10 @@
 import dispatcher from '../dispatcher';
+import { EventEmitter } from 'events';
 
-class HomePageStore {
+class HomePageStore extends EventEmitter {
   constructor() {
+    super();
+
     this.state = {
       user: '',
       headerEntries: [],
@@ -12,6 +15,7 @@ class HomePageStore {
       switch(e.type) {
         case 'HOME_PAGE_LOADED':
           Object.assign(this.state, e.payload);
+          this.emit('update', this.state);
           break;
       }
     });
